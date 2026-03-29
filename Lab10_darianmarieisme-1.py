@@ -40,7 +40,12 @@ def main() -> None:
 
         if user_choice == "5":
            print("Goodbye!")
-           is_running = False 
+           is_running = False
+
+        elif user_choice not in files:
+            print(f"Invalid choice. Please select from {orange}1-5{reset}.")
+            input(f"Press Enter to {purple}return{reset} to the menu.")
+            continue
 
 
 if __name__ == "__main__":
