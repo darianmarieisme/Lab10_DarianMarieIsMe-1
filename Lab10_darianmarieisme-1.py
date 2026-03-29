@@ -15,9 +15,10 @@ purple: str = "\033[38;5;129m"
 green: str = "\033[38;5;46m"
 reset: str = "\033[0m"
 
-exit: bool = False
 
 def main() -> None:
+
+    is_running: bool = True
 
     files: dict[str, tuple[str, Path]] = {
     "1": ("The Count of Monte Cristo", Path("texts/monte_cristo.txt")),
@@ -26,7 +27,7 @@ def main() -> None:
     "4": ("Treasure Island", Path("texts/treasure_island.txt"))
 }
 
-    while exit == False:
+    while is_running == True:
 
         print("-"*3,"Word Analyzer", "-"*3)
         print("Please select a file to analyze:")
@@ -35,7 +36,11 @@ def main() -> None:
             print(f"{orange}{key}.{reset} {name}")
 
         print(f"{orange}5. {reset}Exit")
-        user_choice: str = input(f"Enter your {blue}choice{orange} (1 -5):{reset} ")
+        user_choice: str = input(f"Enter your {blue}choice{orange} (1 -5):{reset} ").strip()
+
+        if user_choice == "5":
+           print("Goodbye!")
+           is_running = False 
 
 
 if __name__ == "__main__":
