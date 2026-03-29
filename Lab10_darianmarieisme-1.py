@@ -4,6 +4,8 @@ This program determines the word count from an assortment
 of files
 03/29/2026'''
 
+from pathlib import Path
+
 
 #color codes ansi escape sequences
 
@@ -17,15 +19,24 @@ exit: bool = False
 
 def main() -> None:
 
+    files: dict[str, tuple[str, Path]] = {
+    "1": ("The Count of Monte Cristo", Path("texts/monte_cristo.txt")),
+    "2": ("A Princess of Mars", Path("texts/princess_mars.txt")),
+    "3": ("Tarzan of the Apes", Path("texts/Tarzan.txt")),
+    "4": ("Treasure Island", Path("texts/treasure_island.txt"))
+}
+
     while exit == False:
 
         print("-"*3,"Word Analyzer", "-"*3)
         print("Please select a file to analyze:")
-        print(f"""
-            {orange}1.{reset} The Count of Monte Cristo {orange}(Chapter 1)
-            2. {reset}A Princess of Mars {orange}(Chapter 1)
-            3. {reset}Tarzan of the Apes {orange}(Chapter 1)
-            4. {reset}Treasure Island {orange}(Chapter 1)
-            5. {reset}Exit
-            """)
-        choice: str = input(f"Enter your {blue}choice{orange}(1 -5):{reset} ")
+
+        for key, (name, _) in files.items():
+            print(f"{orange}{key}.{reset} {name}")
+
+        print(f"{orange}5. {reset}Exit")
+        user_choice: str = input(f"Enter your {blue}choice{orange} (1 -5):{reset} ")
+
+
+if __name__ == "__main__":
+    main()
