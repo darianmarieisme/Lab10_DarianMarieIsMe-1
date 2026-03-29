@@ -36,9 +36,11 @@ def main() -> None:
             print(f"{orange}{key}.{reset} {name}")
 
         print(f"{orange}5. {reset}Exit")
+        print()
         user_choice: str = input(f"Enter your {blue}choice{orange} (1 -5):{reset} ").strip()
 
         if user_choice == "5":
+           print()
            print("Goodbye!")
            is_running = False
 
@@ -46,6 +48,14 @@ def main() -> None:
             print(f"Invalid choice. Please select from {orange}1-5{reset}.")
             input(f"Press Enter to {purple}return{reset} to the menu.")
             continue
+
+        else:
+            name: str
+            path: Path
+            name, path = files[user_choice]
+            print()
+            print(f"Processing {green}'{path.name}'{reset} ...")
+            print()
 
 
 if __name__ == "__main__":
