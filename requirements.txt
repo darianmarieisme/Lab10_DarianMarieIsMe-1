@@ -1,0 +1,5 @@
+No external dependencies required
+uses python standard library modules:
+
+pathlib
+string

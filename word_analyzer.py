@@ -5,6 +5,8 @@ determines the word count from an assortment
 of files
 03/29/2026'''
 
+from pathlib import Path
+
 class WordAnalyzer:
 
     def __init__(self, filepath):
