@@ -12,11 +12,25 @@ import string
 class WordAnalyzer:
 
     def __init__(self, filepath: str):
+        """Initialize a WordAnalyzer object
+
+        Parameter: 
+            filepath (str): the path to the text file to be analyzed.
+
+       Initializes: 
+            _path (Path): A path object representing the file location.
+            _word_counts (dict{str, int]): A dictionary to store word frequencies.
+        """
         self._path: Path = Path(filepath)
         self._word_counts: dict[str, int] = {}
 
     def process_file(self) -> bool:
+        """Process the text file and count word frequencies
 
+        Returns:
+            bool: True if the file was sucessfully processed,
+                False if the file was not found.
+        """
 
         try: 
             if not self._path.exists():
@@ -44,6 +58,8 @@ class WordAnalyzer:
             return False
         
     def print_report(self):
+        """Prints the word frequency report in alphabetical order
+        """
 
         #color code ansi escape sequences
         orange: str = "\033[38;5;208m"
