@@ -6,6 +6,9 @@ of files
 
 from pathlib import Path
 
+from word_analyzer import WordAnalyzer
+
+
 
 #color codes ansi escape sequences
 
@@ -20,11 +23,13 @@ def main() -> None:
 
     is_running: bool = True
 
+    base_dir = Path(__file__).parent
+
     files: dict[str, tuple[str, Path]] = {
-    "1": ("The Count of Monte Cristo", Path("texts/monte_cristo.txt")),
-    "2": ("A Princess of Mars", Path("texts/princess_mars.txt")),
-    "3": ("Tarzan of the Apes", Path("texts/Tarzan.txt")),
-    "4": ("Treasure Island", Path("texts/treasure_island.txt"))
+    "1": ("The Count of Monte Cristo", base_dir /"texts/monte_cristo.txt"),
+    "2": ("A Princess of Mars", base_dir / "texts/princess_mars.txt"),
+    "3": ("Tarzan of the Apes", base_dir / "texts/Tarzan.txt"),
+    "4": ("Treasure Island", base_dir / "texts/treasure_island.txt")
 }
 
     while is_running == True:
@@ -56,6 +61,23 @@ def main() -> None:
             print()
             print(f"Processing {green}'{path.name}'{reset} ...")
             print()
+
+            import os
+            print("Running from:", os.getcwd())
+            print("File exists:", path.exists())
+            print("Full path:", path.resolve())
+
+            analyzer: WordAnalyzer = WordAnalyzer(str(path))
+
+            success = analyzer.process_file()
+
+            if success:
+                analyzer.print_report()
+                continue
+
+            else:
+                print("Error: File not found.")
+                print()
 
 
 if __name__ == "__main__":
